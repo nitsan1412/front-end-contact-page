@@ -85,13 +85,13 @@ const Login = () => {
             style={{ fontSize: 50, margin: "0 auto", display: "block" }}
           />
           <h2 style={{ textAlign: "center" }}>
-            {action === "login" ? strings.login : strings.signin}
+            {action === "login" ? strings.login.login : strings.login.signin}
           </h2>
           <form style={{ maxWidth: "28rem" }}>
             <TextField
               fullWidth
               error={errors.email}
-              label={strings.email}
+              label={strings.login.email}
               variant="outlined"
               margin="normal"
               value={formData.email}
@@ -101,7 +101,7 @@ const Login = () => {
             <TextField
               fullWidth
               error={errors.password}
-              label={strings.password}
+              label={strings.login.password}
               type="password"
               variant="outlined"
               margin="normal"
@@ -113,7 +113,7 @@ const Login = () => {
               <TextField
                 fullWidth
                 error={errors.user_name}
-                label={strings.user_name}
+                label={strings.login.user_name}
                 variant="outlined"
                 margin="normal"
                 value={formData.user_name}
@@ -121,14 +121,16 @@ const Login = () => {
                 helperText={errors.user_name && strings[errors.user_name]}
               />
             )}
-            <div className="button-container">
+            <div className="submit-button-1-container">
               <div
-                className="button"
+                className="submit-button-1"
                 fullWidth
                 onClick={(e) => handleLogin(e)}
                 style={{ marginTop: "10px", alignSelf: "center" }}
               >
-                {action === "login" ? strings.login : strings.signup}
+                {action === "login"
+                  ? strings.login.login
+                  : strings.login.signup}
               </div>
             </div>
           </form>
