@@ -1,5 +1,11 @@
+html, body{
+  direction: rtl;
+
+}
+
 .App {
   text-align: center;
+  direction: rtl;
 }
 
 .App-logo {
@@ -36,3 +42,37 @@
     transform: rotate(360deg);
   }
 }
+.MuiInputBase-formControl{
+  direction: rtl;
+
+}
+
+.button {
+  border-radius: 25px;
+  border-color: crimson;
+  color: crimson;
+  background-color: lightpink;
+  cursor: pointer;
+  padding:1rem;
+  
+
+}
+
+.button:hover{
+  border-color: lightpink;
+  color: lightpink;
+  background-color: crimson;
+}
+
+.button-container{
+  display: flex;
+  justify-content: center;
+}
+
+.underline-text{
+  text-decoration: underline;
+  cursor: pointer;
+
+}
+
+
