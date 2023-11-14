@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../features/userSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 // import "../styles/layout.css";
 export default function Layout({ children }) {
@@ -12,11 +11,12 @@ export default function Layout({ children }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
+    if (!user?._id) {
       navigate("../");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
+
   return (
     <div fluid className="app-container">
       <Header user={user} />

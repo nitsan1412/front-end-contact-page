@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -6,6 +7,8 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Layout from "./components/Layout";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { loginWithJwt } from "./features/userSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const theme = createTheme({
   palette: {
@@ -25,6 +28,15 @@ const theme = createTheme({
 });
 
 function App() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.userInfo);
+
+  useEffect(() => {
+    if (localStorage.getItem("jwt") && !user?._id) {
+      dispatch(loginWithJwt(localStorage.getItem("jwt")));
+    }
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
