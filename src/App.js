@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Layout from "./components/Layout";
+import NewStudentLayout from "./pages/newStudent/NewStudentLayout";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { loginWithJwt } from "./features/userSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -35,6 +36,7 @@ function App() {
     if (localStorage.getItem("jwt") && !user?._id) {
       dispatch(loginWithJwt(localStorage.getItem("jwt")));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -43,7 +45,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          {/* <Route path="/candidate" element={<Candidate />} /> */}
+          <Route path="/new_student" element={<NewStudentLayout />} />
+
           <Route
             path="/dashboard"
             element={

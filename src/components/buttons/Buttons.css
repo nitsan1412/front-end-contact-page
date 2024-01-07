@@ -1,0 +1,34 @@
+.next_button{
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 0.5rem 2rem;
+    border: 3px solid greenyellow;
+    border-radius: 25px;
+}
+.next_button:hover{
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 0.5rem 2rem;
+    border: 1px solid black;
+    border-radius: 25px;
+    background-color: greenyellow;
+}
+
+.back_button{    display: flex;
+justify-content: space-between;
+cursor: pointer;
+padding: 0.5rem 2rem;
+border: 3px solid greenyellow;
+border-radius: 25px;
+}
+.back_button:hover{
+display: flex;
+justify-content: space-between;
+cursor: pointer;
+padding: 0.5rem 2rem;
+border: 1px solid black;
+border-radius: 25px;
+background-color: greenyellow;
+}
