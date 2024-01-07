@@ -53,6 +53,9 @@ const strings = {
     pleaseCheckDetails: "נא לוודא שהפרטים שהוכנסו נכונים לפני ההגשה",
     backAndFix: "חזור לתקן",
     submit: "הגש",
+    " is a required field": " הינו שדה חובה",
+    "Invalid email format": "xxx@xxx.xxx",
+    "phone number must have 10 digits": "נא הכנס מספר טלפון בעל 10 ספרות",
   },
 };
 

@@ -8,11 +8,25 @@ import NewTeacherForm from "./NewTeacherForm";
 import NewStudentChecking from "./NewStudentChecking";
 import NextButton from "../../components/buttons/NextButton";
 import BackButton from "../../components/buttons/BackButton";
+import validateForm from "../../helper/validations";
 
 export default function NewStudentLayout() {
   const [member, setMember] = useState(""); // parent/teacher/student
   const [currentPage, setCurrentPage] = useState(1); //start/form/checking
   const [data, setData] = useState({});
+  const [errors, setErrors] = useState({});
+
+  const checkErrors = async () => {
+    const gotErrors = await validateForm(
+      member === "teacher" ? newTeacherFields : newStudentFields,
+      data
+    );
+    await setErrors(gotErrors.errors);
+    await console.log("errors", gotErrors.errors);
+    if (Object.keys(gotErrors.errors).length === 0) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   const backPage = () => {
     if (currentPage !== 1) {
@@ -21,7 +35,10 @@ export default function NewStudentLayout() {
   };
 
   const nextPage = () => {
-    if (currentPage !== 3) {
+    if (currentPage === 2) {
+      checkErrors();
+    }
+    if (currentPage === 1) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -56,9 +73,9 @@ export default function NewStudentLayout() {
             ""
           )}
           {currentPage === 2 && member === "teacher" ? (
-            <NewTeacherForm data={data} setData={setData} />
+            <NewTeacherForm data={data} setData={setData} errors={errors} />
           ) : currentPage === 2 && member ? (
-            <NewStudentForm data={data} setData={setData} />
+            <NewStudentForm data={data} setData={setData} errors={errors} />
           ) : (
             ""
           )}
@@ -69,10 +86,19 @@ export default function NewStudentLayout() {
           )}
         </div>
         <Grid className="next-back-buttons-group">
-          {currentPage !== 3 ? <NextButton action={nextPage} /> : ""}
           {currentPage !== 1 ? <BackButton action={backPage} /> : ""}
+          {currentPage !== 3 ? <NextButton action={nextPage} /> : ""}
         </Grid>
       </Box>
     </Stack>
   );
 }
+
+const newStudentFields = [
+  "firstName",
+  "lastName",
+  "birthdate",
+  "picture",
+  "parents",
+];
+const newTeacherFields = ["role", "firstName", "lastName", "phone"];

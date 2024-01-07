@@ -1,4 +1,4 @@
-export default async function validateForm(data) {
+export default async function validateForm(dataFields, data) {
   const FIELDS = {
     email: {
       validate: !/\S+@\S+\.\S+/.test(data?.email),
@@ -12,16 +12,29 @@ export default async function validateForm(data) {
       validate: data?.user_name?.length < 4,
       error: "user name must be at least 4 characters long",
     },
+    firstName: {
+      validate: data?.firstName?.length < 2,
+      error: "Invalid name",
+    },
+    lastName: {
+      validate: data?.lastName?.length < 2,
+      error: "Invalid name",
+    },
+    phone: {
+      validate: !/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.test(
+        data?.phone
+      ),
+      error: "phone number must have 10 digits",
+    },
   };
 
   const errors = {};
 
-  await Object.keys(data).forEach((field) => {
-    console.log("data", data);
+  await dataFields.forEach((field) => {
     if (!data[field]) {
       errors[field] = `${field} is a required field`;
-    } else if (FIELDS[field].validate) errors[field] = FIELDS[field].error;
+    } else if (FIELDS[field]?.validate) errors[field] = FIELDS[field].error;
   });
 
-  return { errors };
+  return await { errors };
 }

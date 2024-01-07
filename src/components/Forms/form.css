@@ -1,0 +1,15 @@
+.input-row{
+    direction: rtl;
+}
+
+.select-field{
+    width:34ch;
+    margin: 8px;
+}
+
+.error-on-select{
+    border: red 2px solid;
+    width:34ch;
+    margin: 8px;
+
+}
