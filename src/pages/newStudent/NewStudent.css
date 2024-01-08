@@ -38,3 +38,12 @@
     justify-content: center;
     max-height: 60%;
 }
+.check-details-header{
+    display: flex;
+    text-align: center;
+}
+
+.data-line-in-checkup{
+    margin: 1.4rem 3rem 0.8rem 0rem;
+    font-size: 1.4rem;
+}

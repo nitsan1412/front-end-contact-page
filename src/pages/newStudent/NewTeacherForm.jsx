@@ -75,7 +75,6 @@ export default function NewTeacherForm({ errors, data, setData }) {
 
 const teacherOptions = [
   "teacher",
-  "teacherInThisClass",
   "assitant",
   "intern",
   "kindergartenTeacher",

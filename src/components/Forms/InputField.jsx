@@ -10,16 +10,16 @@ export default function InputField({
   errors,
   isRequired,
 }) {
-  // const [localErrors, setLocalErrors] = useState(errors[fieldName] || "");
+  const [localErrors, setLocalErrors] = useState(errors[fieldName] || "");
 
-  // useEffect(() => {
-  //   setLocalErrors(errors[fieldName] || "");
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [errors]);
+  useEffect(() => {
+    setLocalErrors(errors[fieldName] || "");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [errors]);
 
   return (
     <TextField
-      // error={!!localErrors}
+      error={!!localErrors}
       label={lable}
       size="lg"
       onChange={(e) => handleChange(fieldName, e.target.value)}

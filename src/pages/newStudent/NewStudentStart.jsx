@@ -22,9 +22,9 @@ export default function NewStudentStart({ member, setMember }) {
           onChange={(e) => setMember(e.target.value)}
         >
           <FormControlLabel
-            value="teacher"
+            value="teacherInThisClass"
             control={<Radio />}
-            label={strings.forms.teacher}
+            label={strings.forms.teacherInThisClass}
           />
           <FormControlLabel
             value="parent"
