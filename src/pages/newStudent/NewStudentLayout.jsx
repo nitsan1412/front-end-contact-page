@@ -18,13 +18,15 @@ export default function NewStudentLayout() {
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
   const [header, setHeader] = useState(strings.forms.welcomeToContactPage);
+
   const checkErrors = async () => {
     const gotErrors = await validateForm(
       member === "teacherInThisClass" ? newTeacherFields : newStudentFields,
       data
     );
-    await setErrors(gotErrors.errors);
-    await console.log("errors", gotErrors.errors);
+    
+    setErrors(gotErrors.errors);
+    console.log("errors", gotErrors.errors);
     if (Object.keys(gotErrors.errors).length === 0) {
       setCurrentPage(currentPage + 1);
     }

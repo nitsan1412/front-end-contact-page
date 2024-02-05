@@ -51,21 +51,18 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const resoponse = await validateForm(formData);
+    const resoponse = await validateForm(
+      action === "login"
+        ? ["email", "password"]
+        : ["email", "password", "user_name"],
+      formData
+    );
     await setErrors(resoponse.errors);
     if (Object.keys(resoponse.errors).length === 0) {
       try {
         action === "login"
-          ? dispatch(
-              login({ email: formData.email, password: formData.password })
-            )
-          : dispatch(
-              signup({
-                email: formData.email,
-                password: formData.password,
-                user_name: formData.user_name,
-              })
-            );
+          ? dispatch(login(formData))
+          : dispatch(signup(formData));
       } catch (error) {
         console.error("Error during login:", error);
       }
@@ -85,7 +82,7 @@ const Login = () => {
             style={{ fontSize: 50, margin: "0 auto", display: "block" }}
           />
           <h2 style={{ textAlign: "center" }}>
-            {action === "login" ? strings.login.login : strings.login.signin}
+            {action === "login" ? strings.login.login : strings.login.signup}
           </h2>
           <form style={{ maxWidth: "28rem" }}>
             <TextField
@@ -145,8 +142,8 @@ const Login = () => {
           }}
         >
           {action === "login"
-            ? strings["change to signup"]
-            : strings["change to login"]}
+            ? strings.login["change to login"]
+            : strings.login["change to signup"]}
         </div>
       </Grid>
     </Stack>

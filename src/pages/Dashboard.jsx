@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
-import Button from "@mui/material/Button";
+import { Button, Grid, Stack, Box } from "@mui/material";
 import PagesList from "./PagesList";
-import NewPageDialog from "./newPage/NewPageDialog";
+import NewPageForm from "./newPage/NewPageForm";
 import strings from "../helper/hebrew-translation";
-
+import "./Dashboard.css";
 function Dashboard() {
   const [isSidebarOpen, setSidebarOpen] = useState(
     window.innerWidth > 850 ? true : false
   );
-  const [shownData, setShownData] = useState("allPages");
+  const [shownData, setShownData] = useState("allPages"); //"allPages", "currentPage", "newPageForm"
   const [showNewPageForm, setShowNewPageForm] = useState(false);
 
   const handleSidebarToggle = () => {
     setSidebarOpen(!isSidebarOpen);
   };
-
-  const openNewPageDialog = () => {};
 
   return (
     <div
@@ -27,24 +25,37 @@ function Dashboard() {
       }}
     >
       {/* Content */}
-      <main style={{ flexGrow: 1, flexDirection: "column" }}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleSidebarToggle}
-        >
-          {isSidebarOpen ? "Close Sidebar" : "Open Sidebar"}
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setShowNewPageForm(true)}
-        >
-          {strings.forms.createNewPage}
-        </Button>
-        {/* <NewPageDialog /> */}
-        {shownData === "allPages" ? <PagesList /> : ""}
-        {/* {shownData === "newPage" ? <NewPageDialog /> : ""} */}
+      <main style={{ flexGrow: 1, flexDirection: "column", margin: "1rem" }}>
+        <Box sx={{ flexGrow: 1, height: "100%" }}>
+          <Grid container spacing={4} className="btns-row">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSidebarToggle}
+            >
+              {isSidebarOpen ? "Close Sidebar" : "Open Sidebar"}
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => setShownData("newPageForm")}
+            >
+              {strings.forms.createNewPage}
+            </Button>
+            {/* <Button
+              variant="contained"
+              color="primary"
+              onClick={() => setShownData("newPageForm")}
+            >
+              {strings.forms.createNewPage}
+            </Button> */}
+          </Grid>
+          <Grid container spacing={4} className="main-page-row">
+            {/* <NewPageDialog /> */}
+            {shownData === "allPages" ? <PagesList /> : ""}
+            {shownData === "newPageForm" ? <NewPageForm /> : ""}
+          </Grid>
+        </Box>
       </main>
 
       {/* Sidebar */}

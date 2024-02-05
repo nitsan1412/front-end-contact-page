@@ -5,7 +5,7 @@ export default async function validateForm(dataFields, data) {
       error: "Invalid email format",
     },
     password: {
-      validate: data?.password?.length < 8,
+      validate: data?.password?.length < 5,
       error: "password must be at least 8 characters long",
     },
     user_name: {

@@ -58,6 +58,15 @@ const strings = {
     "Invalid email format": "xxx@xxx.xxx",
     "phone number must have 10 digits": "נא הכנס מספר טלפון בעל 10 ספרות",
   },
+  page: {
+    school_name: "שם בית הספר",
+    class_name: "שם הכיתה",
+    address: "כתובת בית הספר",
+    phone: "טלפון מזכירות בית הספר",
+    principal_name: "שם מנהלת בית הספר",
+    starting_year: "שנת התחלת הלימודים",
+    background: "רקע",
+  },
 };
 
 export default strings;
